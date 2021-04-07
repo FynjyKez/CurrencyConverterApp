@@ -119,6 +119,18 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Core\WalletPair\Converter\Converter.cs" />
+    <Compile Include="Core\Core.cs" />
+    <Compile Include="Core\WalletPair\IWalletPair.cs" />
+    <Compile Include="Core\WalletPair\WalletPair.cs" />
+    <Compile Include="Core\WalletPair\Wallet\IWallet.cs" />
+    <Compile Include="Core\WalletPair\Wallet\Wallet.cs" />
+    <Compile Include="Core\DictionaryOfCurrencies\Currency\ICurrency.cs" />
+    <Compile Include="Core\DictionaryOfCurrencies\IDictionaryOfCurrencies.cs" />
+    <Compile Include="Core\DictionaryOfCurrencies\DictionaryOfCurrencies.cs" />
+    <Compile Include="Core\DictionaryOfCurrencies\Currency\NationalCurrency.cs" />
+    <Compile Include="Core\DataLoader\DataLoader.cs" />
+    <Compile Include="Core\DictionaryOfCurrencies\JsonParser.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -153,6 +165,15 @@
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.2.11</Version>
     </PackageReference>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>13.0.1</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Page\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
