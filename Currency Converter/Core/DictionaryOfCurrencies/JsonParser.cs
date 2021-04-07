@@ -9,12 +9,11 @@ namespace Currency_Converter.Core.DictionaryOfCurrencies
 {
     static class JsonParser
     {
-        public static IDictionaryOfCurrencies ParseString(string String, IDictionaryOfCurrencies Dictionary)
+        public static DictionaryOfNationalCurrencies ParseString(string Json)
         {
             try
             {
-                Dictionary = JsonConvert.DeserializeObject<IDictionaryOfCurrencies>(String);
-                return Dictionary;
+                return JsonConvert.DeserializeObject<DictionaryOfNationalCurrencies>(Json);
             }
             catch (Exception ex)
             {
