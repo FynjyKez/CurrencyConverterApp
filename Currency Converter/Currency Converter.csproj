@@ -119,6 +119,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Core\DictionaryOfCurrencies\Currency\RubleCurrency.cs" />
     <Compile Include="Core\WalletPair\Converter\Converter.cs" />
     <Compile Include="Core\Core.cs" />
     <Compile Include="Core\WalletPair\IWalletPair.cs" />
@@ -127,7 +128,7 @@
     <Compile Include="Core\WalletPair\Wallet\Wallet.cs" />
     <Compile Include="Core\DictionaryOfCurrencies\Currency\ICurrency.cs" />
     <Compile Include="Core\DictionaryOfCurrencies\IDictionaryOfCurrencies.cs" />
-    <Compile Include="Core\DictionaryOfCurrencies\DictionaryOfCurrencies.cs" />
+    <Compile Include="Core\DictionaryOfCurrencies\DictionaryOfNationalCurrencies.cs" />
     <Compile Include="Core\DictionaryOfCurrencies\Currency\NationalCurrency.cs" />
     <Compile Include="Core\DataLoader\DataLoader.cs" />
     <Compile Include="Core\DictionaryOfCurrencies\JsonParser.cs" />

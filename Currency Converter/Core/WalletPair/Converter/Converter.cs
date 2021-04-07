@@ -9,17 +9,16 @@ namespace Currency_Converter.Core.WalletPair.Converter
 {
     static class Converter
     {
-        public static double ConvertVallueWallet(IWallet FromWallet, IWallet InWallet)
+        public static double ConvertValueWallet(IWallet FromWallet, IWallet ToWallet)
         {
             double Value = FromWallet.GetValue();
             int Nominal = FromWallet.GetCourse().Nominal;
             double CurrencyCourse = FromWallet.GetCourse().Value;
 
-            double Value2 = InWallet.GetValue();
-            int Nominal2 = InWallet.GetCourse().Nominal;
-            double CurrencyCourse2 = InWallet.GetCourse().Value;
+            int Nominal2 = ToWallet.GetCourse().Nominal;
+            double CurrencyCourse2 = ToWallet.GetCourse().Value;
 
-            return 0;
+            return (CurrencyCourse * Nominal2) / (Value * CurrencyCourse2 * Nominal);
         }
 
 

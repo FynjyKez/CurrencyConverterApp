@@ -30,8 +30,7 @@ namespace Currency_Converter
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
-            var test2 = new Core.DataLoader.DataLoader();
-            test2.LoadData();
+            var test2 = new Core.Core();
         }
 
         /// <summary>

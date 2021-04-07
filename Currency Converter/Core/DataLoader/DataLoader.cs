@@ -9,7 +9,7 @@ namespace Currency_Converter.Core.DataLoader
 {
     class DataLoader
     {
-        public const string DEFAULT_DATA_ADDRESS = @"https://www.cbr-xml-daily.ru/daily_json.js";
+        const string DEFAULT_DATA_ADDRESS = @"https://www.cbr-xml-daily.ru/daily_json.js";
 
         delegate string ErrorMessege(string Messege);
         event ErrorMessege ConectionErrorLoad;

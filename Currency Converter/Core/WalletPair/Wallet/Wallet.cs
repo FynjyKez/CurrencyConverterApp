@@ -14,22 +14,13 @@ namespace Currency_Converter.Core.WalletPair.Wallet
     /// </summary>
     class Wallet : IWallet
     {
-        private double Value
-        {
-            get
-            {
-                return Value;
-            }
-            set
-            {
-                if (value > .0 && value != Value)
-                {
-                    Value = value;
-                }
-            }
-        }
+        private double Value { get ; set;}
         private ICurrency Course;
-
+        
+        public Wallet(ICurrency Course)
+        {
+            this.Course = Course;
+        }
 
         public Wallet(double Value, ICurrency Course)
         {
