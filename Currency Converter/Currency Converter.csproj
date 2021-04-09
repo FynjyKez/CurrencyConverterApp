@@ -121,7 +121,7 @@
     </Compile>
     <Compile Include="Core\DictionaryOfCurrencies\Currency\RubleCurrency.cs" />
     <Compile Include="Core\WalletPair\Converter\Converter.cs" />
-    <Compile Include="Core\Core.cs" />
+    <Compile Include="Core\CoreCurrencyConverter.cs" />
     <Compile Include="Core\WalletPair\IWalletPair.cs" />
     <Compile Include="Core\WalletPair\WalletPair.cs" />
     <Compile Include="Core\WalletPair\Wallet\IWallet.cs" />
@@ -132,15 +132,13 @@
     <Compile Include="Core\DictionaryOfCurrencies\Currency\NationalCurrency.cs" />
     <Compile Include="Core\DataLoader\DataLoader.cs" />
     <Compile Include="Core\DictionaryOfCurrencies\JsonParser.cs" />
-    <Compile Include="MainPage.xaml.cs">
-      <DependentUpon>MainPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="UI\CalculationPage.xaml.cs">
       <DependentUpon>CalculationPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\ChangeCurrencyPage.xaml.cs">
       <DependentUpon>ChangeCurrencyPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\cs\ValidatorValueWallet.cs" />
     <Compile Include="UI\DownloadPage.xaml.cs">
       <DependentUpon>DownloadPage.xaml</DependentUpon>
     </Compile>
@@ -152,6 +150,7 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Arrow.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -166,10 +165,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="MainPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="UI\CalculationPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -179,6 +174,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\DownloadPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\PageDictionaryResources.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

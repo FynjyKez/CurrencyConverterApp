@@ -11,8 +11,6 @@ namespace Currency_Converter.Core.DictionaryOfCurrencies
     
     class DictionaryOfNationalCurrencies : IDictionaryOfCurrencies
     {
-        [JsonProperty("Date")]
-        private string Date;
         [JsonProperty("Valute")] 
         public virtual Dictionary<string, NationalCurrency> DictionaryCurrencies { get; set; }
 
@@ -25,8 +23,10 @@ namespace Currency_Converter.Core.DictionaryOfCurrencies
         }
         public virtual Dictionary<string, NationalCurrency> SetDictionary(DictionaryOfNationalCurrencies Dictionary)
         {
-            Date = Dictionary.Date;
-            DictionaryCurrencies = Dictionary.DictionaryCurrencies;
+            if (Dictionary != null)
+            {
+                DictionaryCurrencies = Dictionary.DictionaryCurrencies;
+            }
             return DictionaryCurrencies;
         }
 
@@ -34,6 +34,20 @@ namespace Currency_Converter.Core.DictionaryOfCurrencies
         {
             DictionaryCurrencies.Add(NewCurrency.CharCode, NewCurrency);
             return NewCurrency;
+        }
+
+        /// <summary>
+        /// Проверка на пустоту словаря курсов национальных валют
+        /// </summary>
+        /// <returns></returns>
+        public bool DictionaryIsVoid()
+        {
+            if(DictionaryCurrencies == null ||
+                DictionaryCurrencies.Count == 0)
+            {
+                return true;
+            }
+            return false;
         }
 
         public void AddToList(NationalCurrency AddCurrency)

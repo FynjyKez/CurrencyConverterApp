@@ -12,33 +12,52 @@ namespace Currency_Converter.Core
     /// <summary>
     /// Главное ядро доступа к функциям 
     /// </summary>
-    class Core
+    class CoreCurrencyConverter
     {
-        private static Core MainCore;
+        private static CoreCurrencyConverter MainCore;
         const string DefoutCharCodeFirstValute = "USD";
         const double DefoutValueFirstValute = 1;
         const string DefoutCharCodeSecondValute = "RUB";
 
+        public bool SuccsessLoad { get; private set; } = false;
+        public bool ChangeFirstWallet { get; set; } = false;
+        public bool ChangeSecondWallet { get; set; } = false;
+
         WalletPair.WalletPair CoreWalletPair;
         DictionaryOfNationalCurrencies CoreDictionaryOfCurrencies;
 
-        public static Core GetCore()
+        /// <summary>
+        /// Доступ к экземппляру
+        /// </summary>
+        /// <returns></returns>
+        public static CoreCurrencyConverter GetCore()
         {
             if (MainCore == null)
-                MainCore = new Core();
+                MainCore = new CoreCurrencyConverter();
             return MainCore;
         }
 
-        public Core()
+        /// <summary>
+        /// Конструктор
+        /// </summary>
+        public CoreCurrencyConverter()
         {
-            try
-            {
-                SetDefoultDictionary();   
-                SetDefoultWalletPair();
-            }
-            catch(Exception ex)
-            {
+            LoadDefoultData();
+        }
 
+        public delegate void LoadDictionary();
+        public event LoadDictionary ErrorLoadDictionary;
+        public event LoadDictionary SuccessLoadDictionary;
+
+        /// <summary>
+        /// Загрузка данных по умолчанию
+        /// </summary>
+        public void LoadDefoultData()
+        {
+            SetDefoultDictionary();
+            if (SuccsessLoad)
+            {
+                SetDefoultWalletPair();
             }
         }
 
@@ -47,14 +66,20 @@ namespace Currency_Converter.Core
         /// </summary>
         private void SetDefoultDictionary()
         {
-                CoreDictionaryOfCurrencies = new DictionaryOfCurrencies.DictionaryOfNationalCurrencies();
-                CoreDictionaryOfCurrencies.SetDictionary(
-                    JsonParser.ParseString(
-                        new DataLoader.DataLoader().LoadData()
-                        )
-                    );
+            CoreDictionaryOfCurrencies = new DictionaryOfNationalCurrencies();
+            CoreDictionaryOfCurrencies.SetDictionary(
+                JsonParser.ParseString(DataLoader.DataLoader.LoadData()));
+            if(!CoreDictionaryOfCurrencies.DictionaryIsVoid())
+            { 
                 CoreDictionaryOfCurrencies.AddCurrency(new RubleCurrency());
-
+                SuccsessLoad = true;
+                SuccessLoadDictionary?.Invoke();
+            }
+            else
+            {
+                SuccsessLoad = false;
+                ErrorLoadDictionary?.Invoke();
+            }
         }
         /// <summary>
         /// Установить кошельки валют по умолчанию
@@ -68,10 +93,18 @@ namespace Currency_Converter.Core
 
         }
         
+        /// <summary>
+        /// Доступ к первому кошельку
+        /// </summary>
+        /// <returns></returns>
         private IWallet FirstWallet()
         {
             return CoreWalletPair.GetFirstWallet();
         }
+        /// <summary>
+        /// Доступ ко второму кошельку
+        /// </summary>
+        /// <returns></returns>
         private IWallet SecondWallet()
         {
             return CoreWalletPair.GetSecondWallet();
@@ -97,15 +130,15 @@ namespace Currency_Converter.Core
         /// Установить значение для первого кошелька
         /// </summary>
         /// <param name="Value"></param>
-        public void SetFirstWalletValue(double Value) {
-            CoreWalletPair.ChangeValueWallet(FirstWallet(), Value);
+        public void SetFirstWalletValue(string Value) {
+            CoreWalletPair.ChangeValueWallet(FirstWallet(), Convert.ToDouble(Value));
         }
         /// <summary>
         /// Установить значение для второго кошелька
         /// </summary>
         /// <param name="Value"></param>
-        public void SetSecondWalletValue(double Value) {
-            CoreWalletPair.ChangeValueWallet(SecondWallet(), Value);
+        public void SetSecondWalletValue(string Value) {
+            CoreWalletPair.ChangeValueWallet(SecondWallet(), Convert.ToDouble(Value));
         }
 
         /// <summary>
@@ -125,13 +158,15 @@ namespace Currency_Converter.Core
             return SecondWallet().GetCourse().CharCode;
         }
 
+
         /// <summary>
         /// Установить валюту первому кошельку по Коду
         /// </summary>
         /// <param name="CharCode"></param>
         public void SetFirstWalletCurrency(string CharCode)
         {
-            FirstWallet().SetCourse(CoreDictionaryOfCurrencies.FindCurrencyByKey(CharCode));
+            CoreWalletPair.ChangeCurrencyWallet(FirstWallet(), CoreDictionaryOfCurrencies.FindCurrencyByKey(CharCode));
+            //FirstWallet().SetCourse(CoreDictionaryOfCurrencies.FindCurrencyByKey(CharCode));
         }
         /// <summary>
         /// Установить валюту первому кошельку по Коду
@@ -139,7 +174,8 @@ namespace Currency_Converter.Core
         /// <param name="CharCode"></param>
         public void SetSecondWalletCurrency(string CharCode)
         {
-            SecondWallet().SetCourse(CoreDictionaryOfCurrencies.FindCurrencyByKey(CharCode));
+            CoreWalletPair.ChangeCurrencyWallet(SecondWallet(), CoreDictionaryOfCurrencies.FindCurrencyByKey(CharCode));
+            //SecondWallet().SetCourse(CoreDictionaryOfCurrencies.FindCurrencyByKey(CharCode));
         }
 
         /// <summary>

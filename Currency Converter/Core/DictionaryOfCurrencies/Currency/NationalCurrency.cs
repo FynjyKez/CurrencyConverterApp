@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 
 namespace Currency_Converter.Core.DictionaryOfCurrencies.Currency
 {
-    class NationalCurrency : ICurrency
+    public class NationalCurrency : ICurrency
     {
         [JsonProperty("CharCode")]
         public string CharCode { get; set; }
