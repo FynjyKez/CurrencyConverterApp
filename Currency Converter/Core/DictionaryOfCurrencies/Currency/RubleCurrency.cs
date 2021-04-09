@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 
 namespace Currency_Converter.Core.DictionaryOfCurrencies.Currency
 {
-    class RubleCurrency : NationalCurrency
+    public class RubleCurrency : NationalCurrency
     {
         const string RubleCharCode = "RUB";
         const int RubleNominal = 1;

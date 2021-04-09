@@ -30,7 +30,6 @@ namespace Currency_Converter
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
-            var test2 = new Core.Core();
         }
 
         /// <summary>
@@ -67,7 +66,7 @@ namespace Currency_Converter
                     // Если стек навигации не восстанавливается для перехода к первой странице,
                     // настройка новой страницы путем передачи необходимой информации в качестве параметра
                     // навигации
-                    rootFrame.Navigate(typeof(MainPage), e.Arguments);
+                    rootFrame.Navigate(typeof(UI.DownloadPage), e.Arguments);
                 }
                 // Обеспечение активности текущего окна
                 Window.Current.Activate();

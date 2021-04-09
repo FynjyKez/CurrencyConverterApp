@@ -9,6 +9,8 @@ namespace Currency_Converter.Core.DictionaryOfCurrencies
 {
     static class JsonParser
     {
+        public static string ErrorMessege { get; private set; }
+
         public static DictionaryOfNationalCurrencies ParseString(string Json)
         {
             try
@@ -17,7 +19,7 @@ namespace Currency_Converter.Core.DictionaryOfCurrencies
             }
             catch (Exception ex)
             {
-
+                ErrorMessege = ex.Message;
             }
             return null;
         }

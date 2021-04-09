@@ -7,18 +7,20 @@ using Currency_Converter.Core.WalletPair.Wallet;
 
 namespace Currency_Converter.Core.WalletPair.Converter
 {
+    /// <summary>
+    /// Класс конвертации валют
+    /// </summary>
     static class Converter
     {
+        /// <summary>
+        /// Конвертация валюты из одного кошелька в валюту другого кошелька
+        /// </summary>
+        /// <param name="FromWallet">Кошелёк значение короторо переводится</param>
+        /// <param name="ToWallet">Кошелёк в короторый переводится</param>
+        /// <returns>Значение сконвертированной валюты второго кошелька</returns>
         public static double ConvertValueWallet(IWallet FromWallet, IWallet ToWallet)
         {
-            double Value = FromWallet.GetValue();
-            int Nominal = FromWallet.GetCourse().Nominal;
-            double CurrencyCourse = FromWallet.GetCourse().Value;
-
-            int Nominal2 = ToWallet.GetCourse().Nominal;
-            double CurrencyCourse2 = ToWallet.GetCourse().Value;
-
-            return (CurrencyCourse * Nominal2) / (Value * CurrencyCourse2 * Nominal);
+            return  (FromWallet.GetValue() * FromWallet.GetCourse().Value * ToWallet.GetCourse().Nominal) / (ToWallet.GetCourse().Value * FromWallet.GetCourse().Nominal);
         }
 
 

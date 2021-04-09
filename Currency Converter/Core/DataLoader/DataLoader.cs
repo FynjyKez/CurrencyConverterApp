@@ -7,14 +7,12 @@ using System.Net;
 
 namespace Currency_Converter.Core.DataLoader
 {
-    class DataLoader
+    static class DataLoader
     {
         const string DEFAULT_DATA_ADDRESS = @"https://www.cbr-xml-daily.ru/daily_json.js";
+        public static string ErrorMessege { get; private set; }
 
-        delegate string ErrorMessege(string Messege);
-        event ErrorMessege ConectionErrorLoad;
-
-        public string LoadData()
+        public static string LoadData()
         {
             using (WebClient wc = new WebClient())
             {
@@ -24,7 +22,7 @@ namespace Currency_Converter.Core.DataLoader
                 }
                 catch(Exception ex)
                 {
-                    ConectionErrorLoad?.Invoke(ex.Message);
+                    ErrorMessege = ex.Message;
                 }
                 return null;
             }

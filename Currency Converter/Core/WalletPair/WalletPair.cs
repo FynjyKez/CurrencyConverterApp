@@ -47,7 +47,7 @@ namespace Currency_Converter.Core.WalletPair
             else if (Object.ReferenceEquals(Wallet, SecondWallet))
             {
                 SecondWallet.SetValue(Value);
-                SecondWallet.SetValue(Converter.Converter.ConvertValueWallet(SecondWallet,FirstWallet));
+                FirstWallet.SetValue(Converter.Converter.ConvertValueWallet(SecondWallet,FirstWallet));
             }
         }
         public void ChangeCurrencyWallet(IWallet Wallet, ICurrency Currensy)
@@ -55,12 +55,12 @@ namespace Currency_Converter.Core.WalletPair
             if (Object.ReferenceEquals(Wallet, FirstWallet))
             {
                 FirstWallet.SetCourse(Currensy);
-                SecondWallet.SetValue(Converter.Converter.ConvertValueWallet(FirstWallet, SecondWallet));
+                FirstWallet.SetValue(Converter.Converter.ConvertValueWallet(SecondWallet, FirstWallet));
             }
             else if (Object.ReferenceEquals(Wallet, SecondWallet))
             {
                 SecondWallet.SetCourse(Currensy);
-                SecondWallet.SetValue(Converter.Converter.ConvertValueWallet(SecondWallet, FirstWallet));
+                SecondWallet.SetValue(Converter.Converter.ConvertValueWallet(FirstWallet, SecondWallet));
             }
         }
 
