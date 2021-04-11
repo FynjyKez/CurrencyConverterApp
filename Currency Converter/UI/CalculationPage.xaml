@@ -10,30 +10,28 @@
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="PageDictionaryResources.xaml"/>
+                <ResourceDictionary Source="ResourceDictionary/CalculationPageRD.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Page.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="100*"/>
-            <RowDefinition Height="20"/>
             <RowDefinition Height="100*"/>
             <RowDefinition Height="100*"/>
             <RowDefinition Height="400*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="50*"/>
-            <ColumnDefinition Width="150"/>
             <ColumnDefinition Width="50*"/>
         </Grid.ColumnDefinitions>
-        <Image Source="ms-appx:///Assets/Arrow.png" Grid.Column="1" Grid.Row="1"/>
-        <TextBlock x:Name="FirstWalletValueTextBlock"  Text="100" Grid.Row="0"  Grid.Column="0" Style="{StaticResource LeftWalletText}" Tapped="FirstWalletValueTextBlock_Tapped" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-        <TextBlock x:Name="SecondWalletValueTextBlock" Text="122" Grid.Row="0" Grid.Column="2" Style="{StaticResource RightWalletText}"  Tapped="SecondWalletValueTextBlock_Tapped" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-        <TextBlock x:Name="FirstWalletCharCodeTextBlock"  Text="RUB" Grid.Row="2" Grid.Column="0" Style="{StaticResource LeftWalletText}"/>
-        <TextBlock x:Name="SecondWalletCharCodeTextBlock" Text="USD" Grid.Row="2" Grid.Column="3" Style="{StaticResource RightWalletText}"/>
-        <TextBlock x:Name="FirstWalletChangeTextBlock"  Text="Изменить Валюту" Grid.Row="3" Grid.Column="0" Style="{StaticResource ChangeWalletText}" Tapped="FirstWalletChangeTextBlock_Tapped"/>
-        <TextBlock x:Name="SecondWalletChangeTextBlock" Text="Изменить Валюту" Grid.Row="3" Grid.Column="3" Style="{StaticResource ChangeWalletText}" Tapped="SecondWalletChangeTextBlock_Tapped"/>
+        <Image Source="ms-appx:///Assets/Arrow.png" Style="{StaticResource Arrow}"/>
+        <TextBlock x:Name="FirstWalletValueTextBlock"  Text="100" Grid.Row="0"  Grid.Column="0" Style="{StaticResource LeftWalletText}" Tapped="FirstWalletValueTextBlock_Tapped"/>
+        <TextBlock x:Name="SecondWalletValueTextBlock" Text="122" Grid.Row="0" Grid.Column="2" Style="{StaticResource RightWalletText}"  Tapped="SecondWalletValueTextBlock_Tapped"/>
+        <TextBlock x:Name="FirstWalletCharCodeTextBlock"  Text="RUB" Grid.Row="1" Grid.Column="0" Style="{StaticResource LeftWalletText}"/>
+        <TextBlock x:Name="SecondWalletCharCodeTextBlock" Text="USD" Grid.Row="1" Grid.Column="3" Style="{StaticResource RightWalletText}"/>
+        <TextBlock x:Name="FirstWalletChangeTextBlock" Style="{StaticResource ChangeWalletText}" Grid.Column="0" Tapped="FirstWalletChangeTextBlock_Tapped"/>
+        <TextBlock x:Name="SecondWalletChangeTextBlock" Style="{StaticResource ChangeWalletText}" Grid.Column="3" Tapped="SecondWalletChangeTextBlock_Tapped"/>
         <Grid x:Name="ChangeGrid" Visibility="Collapsed" Grid.RowSpan="5" Grid.ColumnSpan="3" Background="Gray">
             <TextBox x:Name="ChangeValueTextBox" Text="" Width="300" Height="50" Margin="0,0,0,500" BeforeTextChanging="ChangeValueTextBox_BeforeTextChanging"/>
             <Button x:Name="ChangeValueOK" Content="OK" Margin="150,0,0,400" VerticalAlignment="Stretch" HorizontalAlignment="Center" Height="30" Width="100" Tapped="ChangeValueOK_Tapped" />
